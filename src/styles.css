@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+body{color: white; background-color: black;}
+p,h2,h3,h4,h5,h6{color:white}
+h1{color:yellow; text-align: center; font-size: 4em}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-dialog-ref{ background-color: black !important;}
+mat-dialog-container{ background-color: black !important;}
+.modal{color:black; background-color:white;}
+
+::ng-deep app-add-showings{color:white; background-color: black;}
+::ng-deep app-add-movie{color:white; background-color: black;}

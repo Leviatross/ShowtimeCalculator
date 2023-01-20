@@ -1,0 +1,8 @@
+<h2 class="modal">Enter information for the movie you would like to see:</h2>
+<form [formGroup]="movieForm" (ngSubmit)="saveMovie()">
+    <p for="name" class="modal">Title</p>
+    <input id="title" type="text" formControlName="title" required>
+    <p class="modal">Runtime</p>
+    <p class="modal"><input type="number" id="hours" formControlName="hours"> hours <input type="number" id="minutes" formControlName="minutes"> minutes</p>
+    <button type="submit">Save</button>
+</form>
