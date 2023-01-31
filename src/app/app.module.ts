@@ -10,13 +10,15 @@ import { AddShowingsComponent } from './add-showings/add-showings.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeScreenComponent,
     AddMovieComponent,
-    AddShowingsComponent
+    AddShowingsComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +29,7 @@ import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
     MatDialogModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AddShowingsComponent]
 })
 export class AppModule { }

@@ -1,5 +1,7 @@
 <h2 class="modal">Enter the time of showings for this movie</h2>
 <form [formGroup]="showingForm">
-    <p class="modal"><input type="text" id="hours" formControlName="hours">:<input type="text" id="minutes" formControlName="minutes"></p>
+    <!-- Min time is 1:00, max is 12:55
+        May replace with Time Picker from Material though -->
+    <p class="modal"><input type="number" id="hours" formControlName="hours" min="1" max="12">:<input type="number" id="minutes" formControlName="minutes" min="0" max="55" step="5"><button>AM</button><button>PM</button></p>
 </form>
 <button>Add</button>

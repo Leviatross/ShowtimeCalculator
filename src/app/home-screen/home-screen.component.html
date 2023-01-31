@@ -1,5 +1,5 @@
 <h1>It's Showtime!</h1>
-<button style="float: right" onclick="openSettingsModal()">Settings</button>
+<button style="float: right" (click)="openSettingsModal()">Settings</button>
 
 <p>Select a movie:</p> 
 <div *ngFor="let movie of movies">
@@ -7,3 +7,4 @@
     <p>Runtime: {{movie.hours}}:{{('0' + movie.minutes).slice(-2)}}</p>
 </div>
 <button (click)="addMovie()">Add a Movie</button>
+<app-add-showings>

@@ -1,17 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-add-movie',
   templateUrl: './add-movie.component.html',
   styleUrls: ['./add-movie.component.css']
 })
+
 export class AddMovieComponent {
   movieForm = new FormGroup({
     title: new FormControl(''),
-    hours: new FormControl(''),
-    minutes: new FormControl(''),
+    hours: new FormControl('',
+      Validators.pattern("^[0-9]*$")
+    ),
+    minutes: new FormControl('',
+    Validators.pattern("^[0-9]*$"),
+    ),
   })
 
   data = { }
@@ -22,11 +28,11 @@ export class AddMovieComponent {
     console.log("Save movie has been called");
     let movie = this.movieForm.value;
 
-    if(movie.hours === null || movie.hours === undefined)
+    if(!movie.hours)
     {
       movie.hours = "0";
     }
-    if(movie.minutes === null || movie.minutes === undefined)
+    if(!movie.minutes)
     {
       movie.minutes = "0";
     }
@@ -36,6 +42,7 @@ export class AddMovieComponent {
 
     const data = {"title": movie.title, "runtime": runtime};
     this.movieForm.reset();
-    return this.httpClient.post('http://localhost:3000/movie', data).subscribe((res) => {console.log(res)});
+    const response = firstValueFrom(this.httpClient.post('http://localhost:3000/movie', data));
+    return response;
   }
 }

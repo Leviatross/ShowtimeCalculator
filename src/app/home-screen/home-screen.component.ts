@@ -4,6 +4,7 @@ import { Movie } from '../movie';
 import { MatDialog } from '@angular/material/dialog';
 import { AddShowingsComponent } from '../add-showings/add-showings.component';
 import { AddMovieComponent } from '../add-movie/add-movie.component';
+import { SettingsComponent } from '../settings/settings.component';
 
 @Component({
   selector: 'app-home-screen',
@@ -21,6 +22,10 @@ export class HomeScreenComponent implements OnInit {
 
   addMovie() {
     this.dialogRef.open(AddMovieComponent);
+  }
+
+  openSettingsModal() {
+    this.dialogRef.open(SettingsComponent);
   }
 
   ngOnInit() {
