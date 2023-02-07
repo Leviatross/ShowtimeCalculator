@@ -1,12 +1,11 @@
-import { int } from "aws-sdk/clients/datapipeline";
 import { DateTime } from "aws-sdk/clients/devicefarm";
 
 export interface Movie
 {
-    id: int
+    id: number
     title: string
-    runtime: int
-    hours: int
-    minutes: int
+    runtimeMinutes: number
+    hours: number
+    minutes: number
     dateAdded: DateTime
 }

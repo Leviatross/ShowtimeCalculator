@@ -16,25 +16,27 @@ export class HomeScreenComponent implements OnInit {
   movies = <Movie[]>[];
   constructor(private apiService: ApiService, private dialogRef: MatDialog) { } 
 
-  addShowings() {
-    this.dialogRef.open(AddShowingsComponent);
+  openAddShowings(movieData: Movie) {
+    this.dialogRef.open(AddShowingsComponent, {
+      data: movieData
+    });
   }
 
-  addMovie() {
+  openAddMovie() {
     this.dialogRef.open(AddMovieComponent);
   }
 
-  openSettingsModal() {
+  openSettings() {
     this.dialogRef.open(SettingsComponent);
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.apiService.getMovies().subscribe((data)=>{
       this.movies = <Movie[]>JSON.parse(JSON.stringify(data));
       this.movies.forEach(function (movie)
       {
-        movie.hours = Math.floor(movie.runtime / 60)
-        movie.minutes = movie.runtime % 60
+        movie.hours = Math.floor(movie.runtimeMinutes / 60)
+        movie.minutes = movie.runtimeMinutes % 60
       })
     });
   }

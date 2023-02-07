@@ -10,4 +10,8 @@ export class ApiService {
   public getMovies(){
     return this.httpClient.get('http://localhost:3000/movie');
   }
+
+  public getShowings(movieId: number){
+    return this.httpClient.get('http://localhost:3000/movie/' + movieId + '/showing');
+  }
 }

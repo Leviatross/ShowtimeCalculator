@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
+import { HomeScreenComponent } from '../home-screen/home-screen.component';
 
 @Component({
   selector: 'app-add-movie',
@@ -38,9 +39,9 @@ export class AddMovieComponent {
     }
     let hours = parseInt(movie.hours);
     let minutes = parseInt(movie.minutes);
-    const runtime = (hours * 60) + minutes;
+    const runtimeMinutes = (hours * 60) + minutes;
 
-    const data = {"title": movie.title, "runtime": runtime};
+    const data = {"title": movie.title, "runtimeMinutes": runtimeMinutes};
     this.movieForm.reset();
     const response = firstValueFrom(this.httpClient.post('http://localhost:3000/movie', data));
     return response;
