@@ -41,7 +41,7 @@ export class AddMovieComponent {
     let minutes = parseInt(movie.minutes);
     const runtimeMinutes = (hours * 60) + minutes;
 
-    const data = {"title": movie.title, "runtimeMinutes": runtimeMinutes};
+    const data = {title: movie.title, runtimeMinutes};
     this.movieForm.reset();
     const response = firstValueFrom(this.httpClient.post('http://localhost:3000/movie', data));
     return response;
