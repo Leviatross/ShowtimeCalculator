@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeScreenComponent } from './home-screen/home-screen.component';
 import { AddMovieComponent } from './add-movie/add-movie.component';
 import { AddShowingsComponent } from './add-showings/add-showings.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,7 +14,6 @@ import { SettingsComponent } from './settings/settings.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeScreenComponent,
     AddMovieComponent,
     AddShowingsComponent,
     SettingsComponent

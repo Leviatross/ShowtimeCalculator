@@ -1,9 +1,0 @@
-<h1>It's Showtime!</h1>
-<button style="float: right" (click)="openSettings()">Settings</button>
-
-<p>Select a movie:</p> 
-<div *ngFor="let movie of movies">
-    <a><button (click)="openAddShowings(movie)">{{movie.title}}</button></a>
-    <p>Runtime: {{movie.hours}}:{{('0' + movie.minutes).slice(-2)}}</p>
-</div>
-<button (click)="openAddMovie()">Add a Movie</button>

@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
-import { HomeScreenComponent } from '../home-screen/home-screen.component';
+import { Movie } from '../movie';
 
 @Component({
   selector: 'app-add-movie',
@@ -11,6 +11,8 @@ import { HomeScreenComponent } from '../home-screen/home-screen.component';
 })
 
 export class AddMovieComponent {
+  @Output() movieAdded = new EventEmitter<Movie>()
+
   movieForm = new FormGroup({
     title: new FormControl(''),
     hours: new FormControl('',
@@ -25,7 +27,7 @@ export class AddMovieComponent {
   
   constructor(private httpClient: HttpClient) {}
 
-  saveMovie() {
+  async saveMovie() {
     console.log("Save movie has been called");
     let movie = this.movieForm.value;
 
@@ -42,8 +44,9 @@ export class AddMovieComponent {
     const runtimeMinutes = (hours * 60) + minutes;
 
     const data = {title: movie.title, runtimeMinutes};
+    const response = await firstValueFrom(this.httpClient.post<Movie>('http://localhost:3000/movie', data));
+    this.movieAdded.emit(response);
     this.movieForm.reset();
-    const response = firstValueFrom(this.httpClient.post('http://localhost:3000/movie', data));
     return response;
   }
 }
