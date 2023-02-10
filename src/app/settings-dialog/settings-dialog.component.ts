@@ -4,11 +4,11 @@ import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-settings',
-  templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.css']
+  templateUrl: './settings-dialog.component.html',
+  styleUrls: ['./settings-dialog.component.css']
 })
 
-export class SettingsComponent {
+export class SettingsDialogComponent {
   constructor(private dialogRef: MatDialog) {};
 
   settingsForm = new FormGroup({
@@ -16,6 +16,6 @@ export class SettingsComponent {
   });
 
   openSettingsModal() {
-    this.dialogRef.open(SettingsComponent);
-  }
+    this.dialogRef.open(SettingsDialogComponent);
+  };
 }

@@ -4,19 +4,19 @@ import { HttpClientModule } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AddMovieComponent } from './add-movie/add-movie.component';
-import { AddShowingsComponent } from './add-showings/add-showings.component';
+import { AddMovieDialogComponent } from './add-movie-dialog/add-movie-dialog.component';
+import { AddShowingsComponent } from './add-showings-dialog/add-showings-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { SettingsComponent } from './settings/settings.component';
+import { SettingsDialogComponent } from './settings-dialog/settings-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddMovieComponent,
+    AddMovieDialogComponent,
     AddShowingsComponent,
-    SettingsComponent
+    SettingsDialogComponent
   ],
   imports: [
     BrowserModule,

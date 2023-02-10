@@ -5,13 +5,13 @@ import { firstValueFrom } from 'rxjs';
 import { Movie } from '../movie';
 
 @Component({
-  selector: 'app-add-movie',
-  templateUrl: './add-movie.component.html',
-  styleUrls: ['./add-movie.component.css']
+  selector: 'app-add-movie-dialog',
+  templateUrl: './add-movie-dialog.component.html',
+  styleUrls: ['./add-movie-dialog.component.css']
 })
 
-export class AddMovieComponent {
-  @Output() movieAdded = new EventEmitter<Movie>()
+export class AddMovieDialogComponent {
+  @Output() movieAdded = new EventEmitter<Movie>();
 
   movieForm = new FormGroup({
     title: new FormControl(''),
@@ -21,11 +21,11 @@ export class AddMovieComponent {
     minutes: new FormControl('',
     Validators.pattern("^[0-9]*$"),
     ),
-  })
+  });
 
-  data = { }
+  data = { };
   
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {};
 
   async saveMovie() {
     console.log("Save movie has been called");

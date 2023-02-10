@@ -1,6 +1,6 @@
 export interface Showing
 {
-    id: number
-    time: string
-    movieId: number
+    id: number;
+    time: string;
+    movieId: number;
 }

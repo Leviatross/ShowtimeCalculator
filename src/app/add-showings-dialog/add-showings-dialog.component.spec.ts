@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddShowingsComponent } from './add-showings.component';
+import { AddShowingsComponent } from './add-showings-dialog.component';
 
 describe('AddShowingsComponent', () => {
   let component: AddShowingsComponent;

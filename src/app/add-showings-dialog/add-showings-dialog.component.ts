@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
-import { waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { firstValueFrom } from 'rxjs';
@@ -9,13 +8,13 @@ import { Movie } from '../movie';
 import { Showing } from '../showing';
 
 @Component({
-  selector: 'app-add-showings',
-  templateUrl: './add-showings.component.html',
-  styleUrls: ['./add-showings.component.css']
+  selector: 'app-add-showings-dialog',
+  templateUrl: './add-showings-dialog.component.html',
+  styleUrls: ['./add-showings-dialog.component.css']
 })
 
 export class AddShowingsComponent {
-  public showings: Showing[] = []
+  public showings: Showing[] = [];
 
   showingForm = new FormGroup({
     hours: new FormControl(''),
