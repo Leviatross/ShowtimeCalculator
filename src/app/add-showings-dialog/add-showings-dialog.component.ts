@@ -17,6 +17,7 @@ export class AddShowingsComponent {
   public showings: Showing[] = [];
 
   showingForm = new FormGroup({
+    time: new FormControl(''),
     hours: new FormControl(''),
     minutes: new FormControl(''),
   });
@@ -28,17 +29,7 @@ export class AddShowingsComponent {
   async saveShowing() {
     console.log("Save showing has been called");
     let showing = this.showingForm.value;
-    if(!showing.hours) {
-      showing.hours = "0";
-    }
-    if(!showing.minutes) {
-      showing.minutes = "00";
-    }
-    //Not working currently
-    if(showing.minutes.length == 1) {
-      showing.minutes = "0" + showing.minutes;
-    }
-    let time = showing.hours + ":" + showing.minutes;
+    let time = showing.time;
 
     const data = {time};
     const response = await firstValueFrom(this.httpClient.post<Showing>('http://localhost:3000/movie/' + this.movieData.id + '/showing', data));
@@ -64,8 +55,16 @@ export class AddShowingsComponent {
   {
     let splitTime = time.split(':');
     let hour = parseInt(splitTime[0]);
-    if(hour <= 12){
+    if(hour == 0)
+    {
+      time = 12 + ":" + splitTime[1] + "AM";
+    }
+    else if(hour <= 11){
       time = time + "AM";
+    }
+    else if(hour == 12)
+    {
+      time = time + "PM";
     }
     else {
       time = hour - 12 + ":" + splitTime[1] + "PM";

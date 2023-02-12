@@ -1,8 +1,16 @@
 <h2 class="modal">Enter information for the movie you would like to add:</h2>
 <form [formGroup]="movieForm" (ngSubmit)="saveMovie()">
-    <p for="name" class="modal">Title</p>
-    <input id="title" type="text" formControlName="title" required>
-    <p class="modal">Runtime</p>
-    <p class="modal"><input type="number" id="hours" formControlName="hours" maxlength="2"> hours <input type="number" id="minutes" formControlName="minutes" maxlength="2"> minutes</p>
-    <button type="submit">Save</button>
+    <mat-form-field>
+        <mat-label color="black">Title</mat-label>
+        <input matInput type="text" id="title" formControlName="title">
+    </mat-form-field><br>
+    <mat-form-field>
+        <mat-label>Hours</mat-label>
+        <input matInput type="number" id="hours" formControlName="hours" maxlength="2">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Minutes</mat-label>
+        <input matInput type="number" id="minutes" formControlName="minutes" maxlength="2">
+    </mat-form-field><br>
+    <button mat-raised-button color="accent" type="submit">Save</button>
 </form>

@@ -1,4 +1,4 @@
-import { Component, Directive, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddMovieDialogComponent } from './add-movie-dialog/add-movie-dialog.component';
 import { AddShowingsComponent } from './add-showings-dialog/add-showings-dialog.component';

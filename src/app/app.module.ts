@@ -8,7 +8,11 @@ import { AddMovieDialogComponent } from './add-movie-dialog/add-movie-dialog.com
 import { AddShowingsComponent } from './add-showings-dialog/add-showings-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule, MatIconButton } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon'
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { SettingsDialogComponent } from './settings-dialog/settings-dialog.component';
 
 @NgModule({
@@ -25,7 +29,12 @@ import { SettingsDialogComponent } from './settings-dialog/settings-dialog.compo
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatDialogModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule
   ],
+  exports: [MatButtonModule, MatIconButton, MatIconModule],
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [AddShowingsComponent]

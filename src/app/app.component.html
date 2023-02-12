@@ -1,9 +1,11 @@
 <h1>It's Showtime!</h1>
-<button style="float: right" (click)="openSettingsDialog()">Settings</button>
+<button mat-icon-button color="warn" style="float: right" (click)="openSettingsDialog()">
+    <mat-icon>more_vert</mat-icon>
+</button>
 
 <p>Select a movie:</p> 
 <div *ngFor="let movie of movies">
-    <a><button (click)="openAddShowings(movie)">{{movie.title}}</button></a>
+    <a><button color="primary" mat-raised-button (click)="openAddShowings(movie)">{{movie.title}}</button></a>
     <p>Runtime: {{getFormattedRuntime(movie)}}</p>
 </div>
-<button (click)="openAddMovieDialog()">Add a Movie</button>
+<button mat-raised-button color="accent" (click)="openAddMovieDialog()">Add a Movie</button>
