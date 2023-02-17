@@ -1,8 +1,10 @@
-<h2 class="modal">Add showings for {{movieData.title}}</h2>
-<form [formGroup]="showingForm" (ngSubmit)="saveShowing()">
-    <input type="time" value="12:00" formControlName="time">
-    <button type="submit">Add</button>
-    <div *ngFor="let showing of showings">
-        <p class="modal">{{formatShowing(showing.time)}}<button type="button" (click)="deleteShowing(showing.id)">X</button></p>
-    </div>
-</form>
+<div style="padding:1em">
+    <h2 class="modal">Add showings for {{movieData.title}}</h2>
+    <form [formGroup]="showingForm" (ngSubmit)="saveShowing()">
+        <input type="time" value="12:00" formControlName="time">
+        <button mat-raised-button color="accent" type="submit">Add</button>
+        <mat-chip-listbox>
+            <mat-chip-option *ngFor="let showing of showings">{{formatShowing(showing.time)}}<button matChipRemove (click)="deleteShowing(showing.id)"><mat-icon>cancel</mat-icon></button></mat-chip-option>
+        </mat-chip-listbox>
+    </form>
+</div>

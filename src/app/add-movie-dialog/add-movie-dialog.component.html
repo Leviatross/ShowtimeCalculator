@@ -1,16 +1,23 @@
-<h2 class="modal">Enter information for the movie you would like to add:</h2>
-<form [formGroup]="movieForm" (ngSubmit)="saveMovie()">
-    <mat-form-field>
-        <mat-label color="black">Title</mat-label>
-        <input matInput type="text" id="title" formControlName="title">
-    </mat-form-field><br>
-    <mat-form-field>
-        <mat-label>Hours</mat-label>
-        <input matInput type="number" id="hours" formControlName="hours" maxlength="2">
-    </mat-form-field>
-    <mat-form-field>
-        <mat-label>Minutes</mat-label>
-        <input matInput type="number" id="minutes" formControlName="minutes" maxlength="2">
-    </mat-form-field><br>
-    <button mat-raised-button color="accent" type="submit">Save</button>
-</form>
+<div style="padding:1em">
+    <h2 class="modal">Enter information for the movie you would like to add:</h2>
+    <form [formGroup]="movieForm" (ngSubmit)="saveMovie()">
+        <mat-form-field>
+            <mat-label color="black">Title</mat-label>
+            <input matInput type="text" id="title" formControlName="title">
+        </mat-form-field><br>
+        <label style="color:black">Runtime</label><br>
+        <mat-form-field style="padding-right: .5em;">
+            <mat-label>Hours</mat-label>
+            <input matInput type="number" id="hours" formControlName="hours" maxlength="2">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Minutes</mat-label>
+            <input matInput type="number" id="minutes" formControlName="minutes" maxlength="2">
+        </mat-form-field><br>
+        <mat-form-field>
+            <mat-label color="black">URL to Movie Poster</mat-label>
+            <input matInput type="text" id="posterURL" formControlName="posterURL">
+        </mat-form-field><br>
+        <button mat-raised-button color="accent" type="submit">Save</button>
+    </form>
+</div>

@@ -13,6 +13,9 @@ import { MatButtonModule, MatIconButton } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon'
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { SettingsDialogComponent } from './settings-dialog/settings-dialog.component';
 
 @NgModule({
@@ -32,9 +35,12 @@ import { SettingsDialogComponent } from './settings-dialog/settings-dialog.compo
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule,
+    MatChipsModule,
+    MatGridListModule,
   ],
-  exports: [MatButtonModule, MatIconButton, MatIconModule],
+  exports: [MatButtonModule, MatIconButton, MatIconModule, MatCardModule],
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [AddShowingsComponent]

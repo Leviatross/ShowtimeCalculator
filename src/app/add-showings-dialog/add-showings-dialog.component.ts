@@ -34,6 +34,7 @@ export class AddShowingsComponent {
     const data = {time};
     const response = await firstValueFrom(this.httpClient.post<Showing>('http://localhost:3000/movie/' + this.movieData.id + '/showing', data));
     this.showings.push(response);
+    this.showings = this.sortShowings(this.showings);
     this.showingForm.reset();
     return response;
   }
@@ -60,6 +61,10 @@ export class AddShowingsComponent {
       time = 12 + ":" + splitTime[1] + "AM";
     }
     else if(hour <= 11){
+      //If the first character is a 0, remove it
+      if(time[0] === '0'){
+        time = time.substring(1);
+      }
       time = time + "AM";
     }
     else if(hour == 12)
@@ -72,9 +77,15 @@ export class AddShowingsComponent {
     return time;
   }
 
+  sortShowings(showingsToSort: Showing[]){
+    showingsToSort.sort((a, b) => a.time < b.time ? -1 : a.time > b.time ? 1 : 0);
+    return showingsToSort;
+  }
+
   ngOnInit() {
     this.apiService.getShowings(this.movieData.id).subscribe((data)=>{
-      this.showings = <Showing[]>JSON.parse(JSON.stringify(data));
+      let showings = <Showing[]>JSON.parse(JSON.stringify(data));
+      this.showings = this.sortShowings(showings);
     });
   }
 }

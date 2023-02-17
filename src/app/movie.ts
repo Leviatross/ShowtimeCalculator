@@ -8,4 +8,5 @@ export interface Movie
     hours: number;
     minutes: number;
     dateAdded: DateTime;
+    posterURL: string;
 }

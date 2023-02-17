@@ -3,9 +3,24 @@
     <mat-icon>more_vert</mat-icon>
 </button>
 
-<p>Select a movie:</p> 
-<div *ngFor="let movie of movies">
-    <a><button color="primary" mat-raised-button (click)="openAddShowings(movie)">{{movie.title}}</button></a>
-    <p>Runtime: {{getFormattedRuntime(movie)}}</p>
+<div style="padding-left:2em" *ngIf="selectedMovies.length > 0">
+    <p>Selected movies:</p> 
+    <mat-grid-list cols="6" rowHeight="2:3" [gutterSize]="'10px'">
+        <mat-grid-tile *ngFor="let selectedMovie of selectedMovies" (click)="openAddShowings(selectedMovie);" class="movieDisplay">
+            <img class="poster" src={{selectedMovie.posterURL}}>
+            <mat-icon (click)="deselectMovie(selectedMovie);" class="deselectButton">cancel</mat-icon>
+        </mat-grid-tile>
+    </mat-grid-list>
 </div>
-<button mat-raised-button color="accent" (click)="openAddMovieDialog()">Add a Movie</button>
+
+<div style="padding-left:2em">
+    <p>Select a movie:</p> 
+    <mat-grid-list cols="6" rowHeight="2:3" [gutterSize]="'10px'">
+        <mat-grid-tile *ngFor="let movie of movies" (click)="selectMovie(movie); openAddShowings(movie);" class="movieDisplay">
+            <img class="poster" src={{movie.posterURL}}>
+        </mat-grid-tile>
+        <mat-grid-tile (click)="openAddMovieDialog()" class="movieDisplay">
+            <mat-icon>add</mat-icon><p>Add a Movie</p>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

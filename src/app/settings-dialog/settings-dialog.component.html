@@ -1,8 +1,10 @@
-<p class="modal">Settings</p>
-<form [formGroup]="settingsForm">
-    <p class="modal">Accetpable Wait Time (how long you're willing to wait between films in minutes)</p>
-    <mat-form-field>
-        <input matInput type="number" id="acceptableWaitTime" formControlName="acceptableWaitTime">
-    </mat-form-field><br>
-</form>
-<button mat-raised-button color="accent">Save</button>
+<div style="padding:1em">
+    <h2 class="modal">Settings</h2>
+    <form [formGroup]="settingsForm">
+        <p class="modal">Accetpable Wait Time (how long you're willing to wait between films in minutes)</p>
+        <mat-form-field>
+            <input matInput type="number" id="acceptableWaitTime" formControlName="acceptableWaitTime">
+        </mat-form-field><br>
+    </form>
+    <button mat-raised-button color="accent">Save</button>
+</div>

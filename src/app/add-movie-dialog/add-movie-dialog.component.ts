@@ -21,6 +21,7 @@ export class AddMovieDialogComponent {
     minutes: new FormControl('',
     Validators.pattern("^[0-9]*$"),
     ),
+    posterURL: new FormControl(''),
   });
 
   data = { };
@@ -43,7 +44,7 @@ export class AddMovieDialogComponent {
     let minutes = parseInt(movie.minutes);
     const runtimeMinutes = (hours * 60) + minutes;
 
-    const data = {title: movie.title, runtimeMinutes};
+    const data = {title: movie.title, runtimeMinutes, posterURL: movie.posterURL};
     const response = await firstValueFrom(this.httpClient.post<Movie>('http://localhost:3000/movie', data));
     this.movieAdded.emit(response);
     this.movieForm.reset();
