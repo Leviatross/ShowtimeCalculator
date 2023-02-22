@@ -1,26 +1,29 @@
-<h1>It's Showtime!</h1>
-<button mat-icon-button color="warn" style="float: right" (click)="openSettingsDialog()">
-    <mat-icon>more_vert</mat-icon>
-</button>
+<div class="encapsulatingDiv">
+    <h1>It's Showtime!</h1>
+    <button mat-icon-button color="warn" style="float: right" (click)="openSettingsDialog()">
+        <mat-icon>more_vert</mat-icon>
+    </button>
 
-<div style="padding-left:2em" *ngIf="selectedMovies.length > 0">
-    <p>Selected movies:</p> 
-    <mat-grid-list cols="6" rowHeight="2:3" [gutterSize]="'10px'">
-        <mat-grid-tile *ngFor="let selectedMovie of selectedMovies" (click)="openAddShowings(selectedMovie);" class="movieDisplay">
-            <img class="poster" src={{selectedMovie.posterURL}}>
-            <mat-icon (click)="deselectMovie(selectedMovie);" class="deselectButton">cancel</mat-icon>
-        </mat-grid-tile>
-    </mat-grid-list>
-</div>
+    <div style="padding-left:2em; padding-right: 2em;" *ngIf="selectedMovies.length > 0">
+        <h2>Selected movies:</h2> 
+        <mat-grid-list cols="6" rowHeight="2:3" [gutterSize]="'10px'">
+            <mat-grid-tile *ngFor="let selectedMovie of selectedMovies" (click)="openAddShowings(selectedMovie);" class="movieDisplay">
+                <img class="poster" src={{selectedMovie.posterURL}}>
+                <mat-icon (click)="deselectMovie(selectedMovie);" class="deselectButton">cancel</mat-icon>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
 
-<div style="padding-left:2em">
-    <p>Select a movie:</p> 
-    <mat-grid-list cols="6" rowHeight="2:3" [gutterSize]="'10px'">
-        <mat-grid-tile *ngFor="let movie of movies" (click)="selectMovie(movie); openAddShowings(movie);" class="movieDisplay">
-            <img class="poster" src={{movie.posterURL}}>
-        </mat-grid-tile>
-        <mat-grid-tile (click)="openAddMovieDialog()" class="movieDisplay">
-            <mat-icon>add</mat-icon><p>Add a Movie</p>
-        </mat-grid-tile>
-    </mat-grid-list>
+    <div style="padding-left:2em; padding-right: 2em;">
+        <h2>Select a movie:</h2> 
+        <mat-grid-list cols="6" rowHeight="2:3" [gutterSize]="'10px'" class="movieGrid">
+            <mat-grid-tile *ngFor="let movie of movies" (click)="selectMovie(movie); openAddShowings(movie);" class="movieDisplay">
+                <!--TODO: Set width to 100% if poster is taller than tile, height to 100% otherwise-->
+                <img class="poster" src={{movie.posterURL}}>
+            </mat-grid-tile>
+            <mat-grid-tile (click)="openAddMovieDialog()" class="addMovieTile">
+                <mat-icon>add</mat-icon><p class="addMovieText">Add a Movie</p>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
 </div>

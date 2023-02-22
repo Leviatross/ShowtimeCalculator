@@ -19,6 +19,9 @@
     "target": "es5",
     "module": "es6",
     "useDefineForClassFields": false,
+    "types": [
+      "@angular/localize"
+    ],
     "lib": [
       "es6",
       "dom"

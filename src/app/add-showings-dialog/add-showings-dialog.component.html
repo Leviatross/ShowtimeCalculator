@@ -1,7 +1,8 @@
 <div style="padding:1em">
     <h2 class="modal">Add showings for {{movieData.title}}</h2>
     <form [formGroup]="showingForm" (ngSubmit)="saveShowing()">
-        <input type="time" value="12:00" formControlName="time">
+        <input formControlName="time" [ngxTimepicker]="timePicker" readonly>
+        <ngx-material-timepicker #timePicker [minutesGap]="5"></ngx-material-timepicker>
         <button mat-raised-button color="accent" type="submit">Add</button>
         <mat-chip-listbox>
             <mat-chip-option *ngFor="let showing of showings">{{formatShowing(showing.time)}}<button matChipRemove (click)="deleteShowing(showing.id)"><mat-icon>cancel</mat-icon></button></mat-chip-option>

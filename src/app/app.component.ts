@@ -16,17 +16,15 @@ export class AppComponent implements OnInit {
   @Output() movieAdded = new EventEmitter<Movie>;
   movies: Movie[] = [];
   selectedMovies: Movie[] = [];
+  time = {hours: 12, minutes: 0};
   constructor(private apiService: ApiService, private dialog: MatDialog) { };
 
-  selectMovie(selectedMovie: Movie)
-  {
+  selectMovie(selectedMovie: Movie) {
     this.selectedMovies.push(selectedMovie);
-    let selectedMovieIndex = this.movies.indexOf(selectedMovie);
-    this.movies.splice(selectedMovieIndex, 1);
+    this.movies = this.movies.filter(m => m.id !== selectedMovie.id)
   }
 
-  deselectMovie(movie: Movie)
-  {
+  deselectMovie(movie: Movie) {
     this.movies.push(movie);
     let selectedMovieIndex = this.selectedMovies.indexOf(movie);
     this.selectedMovies.splice(selectedMovieIndex, 1);
@@ -63,13 +61,21 @@ export class AppComponent implements OnInit {
     return formattedRuntime;
   };
 
+  calculatePosterClass() {
+    let posters = document.getElementsByClassName("poster");
+    console.log(posters);
+  }
+
   openSettingsDialog() {
-    this.dialog.open(SettingsDialogComponent);
+    this.dialog.open(SettingsDialogComponent, {
+      width: '30em'
+    })
   };
 
-  public async ngOnInit() {
-    await this.apiService.getMovies().subscribe((data)=>{
-      this.movies = <Movie[]>JSON.parse(JSON.stringify(data));
+  public ngOnInit() {
+    this.apiService.getMovies().subscribe((data)=>{
+      this.movies = <Movie[]>data;
+      this.calculatePosterClass();
     });
   }
 }

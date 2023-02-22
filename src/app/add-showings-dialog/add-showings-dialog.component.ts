@@ -27,9 +27,22 @@ export class AddShowingsComponent {
   constructor(private httpClient: HttpClient, private apiService: ApiService, @Inject(MAT_DIALOG_DATA) public movieData: Movie) {}
 
   async saveShowing() {
-    console.log("Save showing has been called");
     let showing = this.showingForm.value;
     let time = showing.time;
+
+    if(time) {
+      // I feel like this is a bit lengthy to do (Remove the AM/PM, add 12 to the hours if it's PM), but it seemed to take quite a few transformations
+      let timeAndMeridian = time.split(" ");
+      let timeOnly = timeAndMeridian[0];
+      let meridian = timeAndMeridian[1];
+      let hoursAndMinutes = timeOnly.split(":");
+      let hours = parseInt(hoursAndMinutes[0]);
+      let minutes = parseInt(hoursAndMinutes[1]);
+      if(meridian === "PM") {
+        hours += 12;
+      }
+      let formattedTime = hours + ":" + minutes;
+      time = formattedTime;
 
     const data = {time};
     const response = await firstValueFrom(this.httpClient.post<Showing>('http://localhost:3000/movie/' + this.movieData.id + '/showing', data));
@@ -37,6 +50,26 @@ export class AddShowingsComponent {
     this.showings = this.sortShowings(this.showings);
     this.showingForm.reset();
     return response;
+  }
+
+      //POC - Math with time
+    /*if(time) {
+      let splitTime = time.split(':');
+      let hours = parseInt(splitTime[0]);
+      let minutes = parseInt(splitTime[1]);
+      let testDate = new Date;
+      testDate.setSeconds(0);
+      console.log("Initial date: ", testDate);
+      testDate.setHours(hours);
+      testDate.setMinutes(minutes);
+      console.log("Updated date: ", testDate);
+      let laterTestDate = testDate;
+      laterTestDate.setHours(testDate.getHours() + 1);
+      laterTestDate.setMinutes(testDate.getMinutes() + 47);
+      console.log("Later test date: ", laterTestDate);
+    }*/
+
+  return "Error: Time is null or undefined";
   }
 
   async deleteShowing(id: number) {
@@ -84,7 +117,7 @@ export class AddShowingsComponent {
 
   ngOnInit() {
     this.apiService.getShowings(this.movieData.id).subscribe((data)=>{
-      let showings = <Showing[]>JSON.parse(JSON.stringify(data));
+      let showings = <Showing[]>data;
       this.showings = this.sortShowings(showings);
     });
   }

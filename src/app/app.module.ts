@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,13 +17,15 @@ import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { SettingsDialogComponent } from './settings-dialog/settings-dialog.component';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddMovieDialogComponent,
     AddShowingsComponent,
-    SettingsDialogComponent
+    SettingsDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +41,8 @@ import { SettingsDialogComponent } from './settings-dialog/settings-dialog.compo
     MatCardModule,
     MatChipsModule,
     MatGridListModule,
+    NgxMaterialTimepickerModule,
+    MatTooltipModule,
   ],
   exports: [MatButtonModule, MatIconButton, MatIconModule, MatCardModule],
   providers: [],

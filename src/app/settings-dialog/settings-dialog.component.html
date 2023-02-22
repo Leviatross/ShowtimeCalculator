@@ -1,9 +1,11 @@
 <div style="padding:1em">
     <h2 class="modal">Settings</h2>
     <form [formGroup]="settingsForm">
-        <p class="modal">Accetpable Wait Time (how long you're willing to wait between films in minutes)</p>
+        <p class="modal">Acceptable Wait Time
+        <mat-icon matTooltip="How long you're willing to wait between films" style="margin-right: 0px">info</mat-icon></p>
         <mat-form-field>
-            <input matInput type="number" id="acceptableWaitTime" formControlName="acceptableWaitTime">
+            <mat-label>Minutes</mat-label>
+            <input matInput type="number" id="acceptableWaitTime" formControlName="acceptableWaitTime" placeholder="15">
         </mat-form-field><br>
     </form>
     <button mat-raised-button color="accent">Save</button>
