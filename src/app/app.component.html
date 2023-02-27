@@ -15,12 +15,13 @@
     </div>
 
     <div style="padding-left:2em; padding-right: 2em;">
-        <h2>Select a movie:</h2> 
+        <h2>Select movies:</h2> 
         <mat-grid-list cols="6" rowHeight="2:3" [gutterSize]="'10px'" class="movieGrid">
             <mat-grid-tile *ngFor="let movie of movies" (click)="selectMovie(movie); openAddShowings(movie);" class="movieDisplay">
                 <!--TODO: Set width to 100% if poster is taller than tile, height to 100% otherwise-->
                 <img class="poster" src={{movie.posterURL}}>
             </mat-grid-tile>
+            <!-- TODO: Add styling so background is lower opacity but the text is full opacity -->
             <mat-grid-tile (click)="openAddMovieDialog()" class="addMovieTile">
                 <mat-icon>add</mat-icon><p class="addMovieText">Add a Movie</p>
             </mat-grid-tile>

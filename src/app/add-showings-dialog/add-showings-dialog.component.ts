@@ -116,9 +116,8 @@ export class AddShowingsComponent {
   }
 
   ngOnInit() {
-    this.apiService.getShowings(this.movieData.id).subscribe((data)=>{
-      let showings = <Showing[]>data;
-      this.showings = this.sortShowings(showings);
+    this.apiService.getShowings(this.movieData.id).subscribe((data: Showing[])=>{
+      this.showings = this.sortShowings(data);
     });
   }
 }

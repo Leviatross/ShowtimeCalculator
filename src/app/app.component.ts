@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Subject } from 'rxjs';
 import { AddMovieDialogComponent } from './add-movie-dialog/add-movie-dialog.component';
 import { AddShowingsComponent } from './add-showings-dialog/add-showings-dialog.component';
 import { ApiService } from './api.service';
@@ -15,6 +16,8 @@ import { SettingsDialogComponent } from './settings-dialog/settings-dialog.compo
 export class AppComponent implements OnInit {
   @Output() movieAdded = new EventEmitter<Movie>;
   movies: Movie[] = [];
+
+
   selectedMovies: Movie[] = [];
   time = {hours: 12, minutes: 0};
   constructor(private apiService: ApiService, private dialog: MatDialog) { };
@@ -26,8 +29,8 @@ export class AppComponent implements OnInit {
 
   deselectMovie(movie: Movie) {
     this.movies.push(movie);
-    let selectedMovieIndex = this.selectedMovies.indexOf(movie);
-    this.selectedMovies.splice(selectedMovieIndex, 1);
+    this.movies = this.sortMovies(this.movies);
+    this.selectedMovies = this.selectedMovies.filter(m => m.id !== movie.id);
   }
 
   openAddShowings(movieData: Movie) {
@@ -45,7 +48,8 @@ export class AppComponent implements OnInit {
 
     dialogRef.componentInstance.movieAdded.subscribe((newMovie) =>
       {
-        this.movies.push(newMovie)
+        this.movies.push(newMovie);
+        this.movies = this.sortMovies(this.movies);
       }
     )
   };
@@ -61,9 +65,9 @@ export class AppComponent implements OnInit {
     return formattedRuntime;
   };
 
-  calculatePosterClass() {
-    let posters = document.getElementsByClassName("poster");
-    console.log(posters);
+  sortMovies(moviesToSort: Movie[]){
+    moviesToSort.sort((a, b) => a.dateAdded > b.dateAdded ? -1 : a.dateAdded < b.dateAdded ? 1 : 0);
+    return moviesToSort;
   }
 
   openSettingsDialog() {
@@ -74,8 +78,8 @@ export class AppComponent implements OnInit {
 
   public ngOnInit() {
     this.apiService.getMovies().subscribe((data)=>{
-      this.movies = <Movie[]>data;
-      this.calculatePosterClass();
+      this.movies = this.sortMovies(<Movie[]>data);
+      let moviesO = new Subject<Movie[]>();
     });
   }
 }
